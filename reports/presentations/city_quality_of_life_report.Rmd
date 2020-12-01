@@ -23,7 +23,7 @@ How much value does amenities like warm and sunny late November days, or being u
 
 The unit of analysis here will be *Commuting Zones (CZs).* For ease of reference and interpretation, you will notice duplicate entries for CZs-- one for each MSA contained within it, because CZs may be multiple [Metro/micro]politan Statistical Areas (MSAs) where people frequently commute between. For example, it's not uncommon for folks to commute between their home in Marion County, Oregon and the city of Portland. Hence, while the city of Salem is in a different MSA than Portland, they share a commuting zone. The CZ containing Portland has five duplicate rows reflecting each of its MSAs (Portland, Salem, Albany, Corvallis, and Eugene/Springfield).
 
-As explained below in the "economic logic..." section, a positive "value \% of income" expresses the value of the CZ amenities in terms of the percentage of possible consumption given up by the average household to live in the area, implying a high quality of living. "\$ of avg. income" multiplies this by average household income, expressing it as a dollar value for the average household. If the figures are negative, it's interpretable as the amount that households are being *compensated* (in percentage or dollar terms) to stay in the area at a given cost of living, implying a worse quality of life.
+As explained below in the "economic logic..." section, a positive "fraction of income" expresses the value of the CZ amenities in terms of the fraction of possible consumption given up by the average household to live in the area, implying a high quality of living. "\$ of avg. income" multiplies this by average household income, expressing it as a dollar value for the average household. If the figures are negative, it's interpretable as the amount that households are being *compensated* (in percentage or dollar terms) to stay in the area at a given cost of living, implying a worse quality of life.
 
 ## Quality of Living Rankings
 
@@ -45,7 +45,7 @@ Here, $p_z$ is the implied price of amenity $z$; $r$ is the residential rent for
 
 For those who prefer English to mathematics, it's just the intuition laid-out above; the value $p_z$ of an additional amount of the local amenity $dz$ is revealed by the difference between its contribution to rent spending and its contribution to workers earnings. Above, we formulated $z$ as the amount of some particular amenity, like average termperature in January, or distance to national forests. We could also consider $z$ instead to be the value of *every combined place-based amenity* in a local area. David Albouy writing in 2008 summarises the best intuition for this interpretation of $z$:
 
-"[It] represents the percent of total consumption households are willing to forego to live in [a city with these rents and wages] instead of an average city."
+"[It] represents the [fraction] of total consumption households are willing to forego to live in [a city with these rents and wages] instead of an average city."
 
 If local amenities are associated with more spending on rent relative to earnings, and people aren't moving away from an area, they must value the amenities at least this much, Otherwise their wellbeing would go down and they would leave the area, right? Maybe that seems *too* simple, and while it is simplistic, it seems to do a good job describing what's going on with people's choices.
 
