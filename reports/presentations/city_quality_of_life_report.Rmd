@@ -1,0 +1,52 @@
+---
+title: "Quality of Life in American Commuting Zones"
+author: "R. Chris Berg"
+date: "11/26/2020"
+output: 
+  html_document:
+    theme: spacelab
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+
+qol_rankings <- 
+  read_csv("D:/Economics/Projects/urban-econ/data/export/QOL_rankings.csv") %>%
+  select(rank,czone,msa,score,amenity_income_price,amenity_value)
+
+```
+
+# Background
+
+How much value does amenities like warm and sunny late November days, or being up the street from hot beaches on the Pacific Ocean, contribute to the greater Los Angeles area? What are harsh winters and high crime rates in Milwaukee really worth to the residents? These are uniquely economic questions which shed light on the world of value beyond dollars and cents. Urban economics offers us tools that we can use to map information on the choices people make (such as the wages paid at whichever job they accept, or the rents paid at the residence they pick) to the value they place on the ineffable local qualities of their surroundings.
+
+The unit of analysis here will be *Commuting Zones (CZs).* For ease of reference and interpretation, you will notice duplicate entries for CZs-- one for each MSA contained within it, because CZs may be multiple [Metro/micro]politan Statistical Areas (MSAs) where people frequently commute between. For example, it's not uncommon for folks to commute between their home in Marion County, Oregon and the city of Portland. Hence, while the city of Salem is in a different MSA than Portland, they share a commuting zone. The CZ containing Portland has five duplicate rows reflecting each of its MSAs (Portland, Salem, Albany, Corvallis, and Eugene/Springfield).
+
+As explained below in the "economic logic..." section, a positive "value \% of income" expresses the value of the CZ amenities in terms of the percentage of possible consumption given up by the average household to live in the area, implying a high quality of living. "\$ of avg. income" multiplies this by average household income, expressing it as a dollar value for the average household. If the figures are negative, it's interpretable as the amount that households are being *compensated* (in percentage or dollar terms) to stay in the area at a given cost of living, implying a worse quality of life.
+
+## Quality of Living Rankings
+
+```{r qol_table, echo=F}
+qol_rankings %>%
+  knitr::kable( col.names = c("Rank","CZ Code","MSA Name in CZ","Score","Amenity (value % of income)","Amenity ($ of avg. income)") ,
+         align="c",
+         digits=2)
+```
+
+## The economic logic behind amenity value
+
+A thought experiment to start off. Imagine three cities within a county: Acropolis, Upfrum Down, and Spira. In Acropolis and Upfrum Down, the wage is \$200 per week. In Spira, on the other hand, the wage is \$300 per week. Continue to imagine that anyone can rent a residence (or purchase at an equal ownership cost) for \$300 per month. In fact, go ahead and assume that all other prices except for the wage are the same. The obvious question that arises is why does anyone still live in Acropolis or Upfrum Down? Couldn't people just move to Spira and have the same residence, with an extra \$400 a month to spend enjoying other goods and services? Using examples from before, one wonders if maybe Spira is similar to Milwaukee or Minneapolis, with Acropolis and Upfrum Down similar to somplace like Los Angeles and San Francisco. The extra \$400 a month might even seem like a joke to some accustomed to year-round sunshine and beach access. Hence, we would say that Spira has a high ($>0$) quality of life, measured at 33\% of foregone consumption. We could alternatively say that the quality of life in Acropolis and Upfrum Down is lower ($<0$), since firms in these cities need to *pay* an extra 33\% wage each month to keep workers from emigrating to higher quality-of-life Spira.
+
+Jennifer Roback laid-out a simple, formal version of this reasoning in one equation:
+
+$$ p_z = H \frac{dr}{dz} - \frac{dw}{dz} $$
+Here, $p_z$ is the implied price of amenity $z$; $r$ is the residential rent for the housing unit $H$ (this could be defined variously, like square feet or rooms, as long as it's consistent), and $w$ is the wage that the worker accepts.
+
+For those who prefer English to mathematics, it's just the intuition laid-out above; the value $p_z$ of an additional amount of the local amenity $dz$ is revealed by the difference between its contribution to rent spending and its contribution to workers earnings. Above, we formulated $z$ as the amount of some particular amenity, like average termperature in January, or distance to national forests. We could also consider $z$ instead to be the value of *every combined place-based amenity* in a local area. David Albouy writing in 2008 summarises the best intuition for this interpretation of $z$:
+
+"[It] represents the percent of total consumption households are willing to forego to live in [a city with these rents and wages] instead of an average city."
+
+If local amenities are associated with more spending on rent relative to earnings, and people aren't moving away from an area, they must value the amenities at least this much, Otherwise their wellbeing would go down and they would leave the area, right? Maybe that seems *too* simple, and while it is simplistic, it seems to do a good job describing what's going on with people's choices.
+
+Hence, we can interpret $z$ as a *cardinal measure of quality of life* separate from earnings or living expenses required to stay in the area. Even though we use those to measure this quality of life, it's independent because it's the value that's *revealed* by people's choices rather than being a *function of* them.
