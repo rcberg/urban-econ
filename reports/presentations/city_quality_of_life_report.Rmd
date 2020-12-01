@@ -29,7 +29,7 @@ As explained below in the "economic logic..." section, a positive "value \% of i
 
 ```{r qol_table, echo=F}
 qol_rankings %>%
-  knitr::kable( col.names = c("Rank","CZ Code","MSA Name in CZ","Score","Amenity (value % of income)","Amenity ($ of avg. income)") ,
+  knitr::kable( col.names = c("Rank","CZ Code","MSA Name in CZ","Score","Amenity value (fraction of income)","Amenity value ($ of avg. income)") ,
          align="c",
          digits=2)
 ```
